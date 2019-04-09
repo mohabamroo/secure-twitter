@@ -1,0 +1,42 @@
+[
+  {
+    "_id": "5c327a700000000000000001",
+    "firstName": "hakeim",
+    "country": "Egypt",
+    "countryCode": "+20",
+    "phoneNumber": "01000000000",
+    "gender": "male",
+    "birthDate": "1995-04-04",
+    "phoneVerified": true
+  },
+  {
+    "_id": "5c327a700000000000000002",
+    "firstName": "maged",
+    "country": "Egypt",
+    "countryCode": "+20",
+    "phoneNumber": "01000000000",
+    "gender": "male",
+    "birthDate": "1995-04-04",
+    "phoneVerified": true
+  },
+  {
+    "_id": "5c327a700000000000000003",
+    "firstName": "hazem",
+    "country": "Egypt",
+    "countryCode": "+20",
+    "phoneNumber": "01000000000",
+    "gender": "male",
+    "birthDate": "1995-04-04",
+    "phoneVerified": true
+  },
+  {
+    "_id": "5c327a700000000000000004",
+    "firstName": "mohab",
+    "country": "Egypt",
+    "countryCode": "+20",
+    "phoneNumber": "01000000000",
+    "gender": "male",
+    "birthDate": "1995-04-04",
+    "phoneVerified": true
+  }
+]

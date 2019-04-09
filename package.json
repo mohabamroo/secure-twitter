@@ -1,0 +1,42 @@
+{
+  "name": "secure-twitter",
+  "version": "1.0.0",
+  "description": "Security Project - Semeter 10",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon --exec babel-node src/server.js",
+    "pm2:stop": "pm2 stop secure-twiiter",
+    "pm2:start": "pm2 start --interpreter babel-node --name secure-twiiter src/server.js",
+    "seed:dev": "babel-node database/seed.dev.js"
+  },
+  "author": "Mohab Amr",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "dotenv": "^6.1.0",
+    "express": "^4.16.4",
+    "express-rate-limit": "^3.4.0",
+    "express-validation": "^1.0.2",
+    "http-errors": "^1.7.1",
+    "joi": "^14.0.1",
+    "jsonwebtoken": "^8.3.0",
+    "mime": "^2.4.0",
+    "mkdirp": "^0.5.1",
+    "mongoose": "^5.3.15",
+    "mongoose-beautiful-unique-validation": "^7.1.1",
+    "mongoose-paginate": "^5.0.3",
+    "mongoose-seed": "^0.5.1",
+    "multer": "^1.4.1",
+    "nodemon": "^1.18.4",
+    "uuid": "^3.3.2",
+    "uuidv4": "^2.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-2": "^6.24.1",
+    "morgan": "^1.9.1"
+  }
+}

@@ -1,0 +1,15 @@
+jobs:
+  build:
+    docker:
+      - image: circleci/node:7
+    branches:
+      only:
+        - deploy
+    steps:
+      - checkout
+      - run:
+          name: install-dependencies
+          command: npm install
+      - deploy:
+          name: google-cloud-deployment
+          command: ssh -o "StrictHostKeyChecking no" hazemelagaty@35.196.97.63 APP=medico-v2 BRANCH=deploy REPO_URL=git@github.com:HazemElAgaty/medico-v2.git ./update_server.sh

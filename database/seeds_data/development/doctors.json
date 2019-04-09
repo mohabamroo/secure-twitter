@@ -1,0 +1,391 @@
+[
+  {
+    "_id": "5c327a600000000000000001",
+    "firstName": "ahmed",
+    "lastName": "Osman",
+    "country": "Egypt",
+    "city": "Cairo",
+    "product": "both",
+    "countryCode": "+20",
+    "phoneNumber": "01000000000",
+    "gender": "male",
+    "birthDate": "1995-03-03",
+    "speciality": "Psychologist",
+    "experience": 8,
+    "fees": 250,
+    "about": "I am a doctor",
+    "applicationApproval": "pending",
+    "profileApproval": "pending",
+    "phoneVerified": true,
+    "chatSlots": [
+      {
+        "date": "2019-07-07",
+        "from": "12:00",
+        "to": "12:30",
+        "isFree": true
+      },
+      {
+        "date": "2019-07-08",
+        "from": "13:00",
+        "to": "13:30",
+        "isFree": true
+      },
+      {
+        "date": "2019-07-09",
+        "from": "14:00",
+        "to": "14:30",
+        "isFree": true
+      },
+      {
+        "date": "2019-07-10",
+        "from": "15:00",
+        "to": "15:30",
+        "isFree": true
+      }
+    ],
+    "media": [],
+    "clinics": [
+      {
+        "area": "Maadi",
+        "address": "St.233",
+        "phoneNumber": "01000000000",
+        "schedule": [
+          {
+            "day": "monday",
+            "from": "08:00",
+            "to": "19:00"
+          },
+          {
+            "day": "thursday",
+            "from": "08:00",
+            "to": "19:00"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "5c327a600000000000000002",
+    "firstName": "mohamed",
+    "lastName": "Kareem",
+    "country": "Egypt",
+    "city": "Alexandria",
+    "product": "both",
+    "countryCode": "+20",
+    "phoneNumber": "01000000000",
+    "gender": "male",
+    "birthDate": "1995-03-03",
+    "speciality": "Cardiologist",
+    "experience": 10,
+    "fees": 150,
+    "about": "I am a doctor",
+    "applicationApproval": "approved",
+    "profileApproval": "approved",
+    "phoneVerified": true,
+    "chatSlots": [
+      {
+        "date": "2019-07-07",
+        "from": "12:00",
+        "to": "12:30",
+        "isFree": true
+      },
+      {
+        "date": "2019-07-08",
+        "from": "13:00",
+        "to": "13:30",
+        "isFree": true
+      },
+      {
+        "date": "2019-07-09",
+        "from": "14:00",
+        "to": "14:30",
+        "isFree": true
+      },
+      {
+        "date": "2019-07-10",
+        "from": "15:00",
+        "to": "15:30",
+        "isFree": true
+      }
+    ],
+    "media": [],
+    "clinics": [
+      {
+        "area": "Zamalek",
+        "address": "St.Brazil",
+        "phoneNumber": "01000000000",
+        "schedule": [
+          {
+            "day": "monday",
+            "from": "08:00",
+            "to": "19:00"
+          },
+          {
+            "day": "thursday",
+            "from": "08:00",
+            "to": "19:00"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "5c327a600000000000000003",
+    "firstName": "Omar",
+    "lastName": "Mostafa",
+    "country": "Egypt",
+    "city": "Dokki",
+    "product": "both",
+    "countryCode": "+20",
+    "phoneNumber": "01000000000",
+    "gender": "male",
+    "birthDate": "1995-03-03",
+    "speciality": "Psychologist",
+    "experience": 7,
+    "fees": 225,
+    "about": "I am a doctor",
+    "applicationApproval": "approved",
+    "profileApproval": "approved",
+    "phoneVerified": true,
+    "chatSlots": [
+      {
+        "date": "2019-07-07",
+        "from": "12:00",
+        "to": "12:30",
+        "isFree": true
+      },
+      {
+        "date": "2019-07-08",
+        "from": "13:00",
+        "to": "13:30",
+        "isFree": true
+      },
+      {
+        "date": "2019-07-09",
+        "from": "14:00",
+        "to": "14:30",
+        "isFree": true
+      },
+      {
+        "date": "2019-07-10",
+        "from": "15:00",
+        "to": "15:30",
+        "isFree": true
+      }
+    ],
+    "media": [],
+    "clinics": [
+      {
+        "area": "Nasr City",
+        "address": "Makram",
+        "phoneNumber": "01000000000",
+        "schedule": [
+          {
+            "day": "monday",
+            "from": "08:00",
+            "to": "19:00"
+          },
+          {
+            "day": "thursday",
+            "from": "08:00",
+            "to": "19:00"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "5c327a600000000000000004",
+    "firstName": "Ezzay",
+    "country": "Egypt",
+    "city": "6th Of October",
+    "product": "both",
+    "countryCode": "+20",
+    "phoneNumber": "01000000000",
+    "gender": "male",
+    "birthDate": "1995-03-03",
+    "speciality": "Colorectal Surgeon",
+    "experience": 18,
+    "fees": 450,
+    "about": "I am a doctor",
+    "applicationApproval": "approved",
+    "profileApproval": "approved",
+    "phoneVerified": true,
+    "chatSlots": [
+      {
+        "date": "2019-07-07",
+        "from": "12:00",
+        "to": "12:30",
+        "isFree": true
+      },
+      {
+        "date": "2019-07-08",
+        "from": "13:00",
+        "to": "13:30",
+        "isFree": true
+      },
+      {
+        "date": "2019-07-09",
+        "from": "14:00",
+        "to": "14:30",
+        "isFree": true
+      },
+      {
+        "date": "2019-07-10",
+        "from": "15:00",
+        "to": "15:30",
+        "isFree": true
+      }
+    ],
+    "media": [],
+    "clinics": [
+      {
+        "area": "Maadi",
+        "address": "St.216",
+        "phoneNumber": "01000000000",
+        "schedule": [
+          {
+            "day": "monday",
+            "from": "08:00",
+            "to": "19:00"
+          },
+          {
+            "day": "thursday",
+            "from": "08:00",
+            "to": "19:00"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "5c327a600000000000000005",
+    "firstName": "Kamal",
+    "lastName": "Osman",
+    "country": "Egypt",
+    "city": "Cairo",
+    "product": "both",
+    "countryCode": "+20",
+    "phoneNumber": "01000000000",
+    "gender": "male",
+    "birthDate": "1995-03-03",
+    "speciality": "Psychologist",
+    "experience": 8,
+    "fees": 250,
+    "about": "I am a doctor",
+    "applicationApproval": "approved",
+    "profileApproval": "approved",
+    "phoneVerified": true,
+    "chatSlots": [
+      {
+        "date": "2019-07-07",
+        "from": "12:00",
+        "to": "12:30",
+        "isFree": true
+      },
+      {
+        "date": "2019-07-08",
+        "from": "13:00",
+        "to": "13:30",
+        "isFree": true
+      },
+      {
+        "date": "2019-07-09",
+        "from": "14:00",
+        "to": "14:30",
+        "isFree": true
+      },
+      {
+        "date": "2019-07-10",
+        "from": "15:00",
+        "to": "15:30",
+        "isFree": true
+      }
+    ],
+    "media": [],
+    "clinics": [
+      {
+        "area": "Downtown",
+        "address": "St.299",
+        "phoneNumber": "01000000000",
+        "schedule": [
+          {
+            "day": "monday",
+            "from": "08:00",
+            "to": "19:00"
+          },
+          {
+            "day": "thursday",
+            "from": "08:00",
+            "to": "19:00"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "5c327a600000000000000006",
+    "firstName": "Yasser",
+    "lastName": "Hegazi",
+    "country": "Egypt",
+    "city": "Cairo",
+    "product": "both",
+    "countryCode": "+20",
+    "phoneNumber": "01000000000",
+    "gender": "male",
+    "birthDate": "1995-03-03",
+    "speciality": "Addiction Psychiatrist",
+    "experience": 8,
+    "fees": 250,
+    "about": "I am a doctor",
+    "applicationApproval": "approved",
+    "profileApproval": "approved",
+    "phoneVerified": true,
+    "chatSlots": [
+      {
+        "date": "2019-07-07",
+        "from": "12:00",
+        "to": "12:30",
+        "isFree": true
+      },
+      {
+        "date": "2019-07-08",
+        "from": "13:00",
+        "to": "13:30",
+        "isFree": true
+      },
+      {
+        "date": "2019-07-09",
+        "from": "14:00",
+        "to": "14:30",
+        "isFree": true
+      },
+      {
+        "date": "2019-07-10",
+        "from": "15:00",
+        "to": "15:30",
+        "isFree": true
+      }
+    ],
+    "media": [],
+    "clinics": [
+      {
+        "area": "Zamalek",
+        "address": "St.Abou El Feda",
+        "phoneNumber": "01000000000",
+        "schedule": [
+          {
+            "day": "monday",
+            "from": "08:00",
+            "to": "19:00"
+          },
+          {
+            "day": "thursday",
+            "from": "08:00",
+            "to": "19:00"
+          }
+        ]
+      }
+    ]
+  }
+]
