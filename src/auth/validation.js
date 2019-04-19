@@ -18,7 +18,8 @@ export default {
           .regex(/^[0-9]*$/, "Phone Number")
           .allow(null),
         gender: Joi.string().valid(["male", "female"]),
-        birthDate: Joi.date().allow(null)
+        birthDate: Joi.date().allow(null),
+        private: Joi.bool().default(false)
       }).required()
     }
   },

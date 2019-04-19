@@ -1,15 +1,12 @@
 import mongoose from "mongoose";
 
 const mongooseConnect = cb => {
-  mongoose.connect(
-    "mongodb://localhost/Medico",
-    { useNewUrlParser: true }
-  );
+  const mongo_uri =
+    "mongodb://team37:test1234@ds127190.mlab.com:27190/secure-twitter";
+  mongoose.connect(mongo_uri, { useNewUrlParser: true });
 
   mongoose.connection.on("connected", () => {
-    console.log(
-      ("Mongoose default connection is open to ", "mongodb://localhost/Medico")
-    );
+    console.log(("Mongoose default connection is open to ", mongo_uri));
     if (cb) cb();
   });
 

@@ -12,11 +12,12 @@ const userSignup = (req, res, next) => {
   user.role = "user";
   user.refreshToken = refreshToken;
   User.create(user)
-    .then(function(user) {
+    .then(user => {
+      console.log(user);
       req.user = user;
       next();
     })
-    .catch(function(err) {
+    .catch(err => {
       next(err);
     });
 };
@@ -26,6 +27,7 @@ const verifyCredentials = (req, res, next) => {
   const roles = req.query.roles || ["user"];
 
   User.findOne({ email })
+    .select("+password")
     .then(auth => {
       if (!auth) {
         next(http4xx(401, "Authentication Failed: Email does not exist."));
@@ -82,28 +84,10 @@ const refreshAuthToken = (req, res, next) => {
     });
 };
 
-const initializeMongoModel = model => {
-  if (model === "user") {
-    return User;
-  } else if (model === "doctor") {
-    return Doctor;
-  } else {
-    return null;
-  }
-};
-
+// FIXME: remove
 const updateUser = (req, res, next) => {
   const { id } = req.params;
-  const MongoModel = initializeMongoModel(req.params.model);
-  if (!MongoModel) {
-    next(http4xx(400, "Invalid Model."));
-    return;
-  }
-  MongoModel.findOneAndUpdate(
-    { _id: id },
-    { phoneVerified: true },
-    { new: true }
-  )
+  User.findOneAndUpdate({ _id: id }, { phoneVerified: true }, { new: true })
     .then(() => {
       next();
     })

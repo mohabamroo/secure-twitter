@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 import beautifyUnique from "mongoose-beautiful-unique-validation";
 import bcrypt from "bcryptjs";
 
-var authSchema = new mongoose.Schema({
+var UserSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
+  password: { type: String, required: true, select: false },
   role: { type: String, required: true },
   refreshToken: { type: String, required: true },
   name: {
@@ -32,7 +32,7 @@ var authSchema = new mongoose.Schema({
   }
 });
 
-authSchema.pre("save", function(next) {
+UserSchema.pre("save", function(next) {
   const auth = this;
   if (auth) {
     bcrypt.hash(this.password, 10, (err, hash) => {
@@ -47,6 +47,12 @@ authSchema.pre("save", function(next) {
   }
 });
 
-authSchema.plugin(beautifyUnique);
+UserSchema.methods.toJSON = function() {
+  var obj = this.toObject();
+  delete obj.password;
+  return obj;
+};
 
-export default mongoose.model("User", authSchema);
+UserSchema.plugin(beautifyUnique);
+
+export default mongoose.model("User", UserSchema);
