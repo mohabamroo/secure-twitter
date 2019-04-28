@@ -26,4 +26,11 @@ router.post("/refresh", controller.refreshTokenPipeline, (req, res) => {
     token: req.token
   });
 });
+
+router.post("/logout", controller.logoutPipeline, (req, res) => {
+  res.status(200).json({
+    message: "Successfully logged out."
+  });
+});
+
 export default router;

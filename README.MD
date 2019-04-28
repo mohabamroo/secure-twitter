@@ -4,9 +4,10 @@
 
 ### Users
 
-- Follow :heavy_check_mark:
+- Follow/request :heavy_check_mark:
 - Unfollow :heavy_check_mark:
-- List
+- List (pagination) :heavy_check_mark:
+- Accept/Remove Follow Requests :heavy_check_mark:
 
 ### Messages
 
@@ -23,7 +24,7 @@
 ### Tweets
 
 - Create :heavy_check_mark:
-- List :heavy_check_mark:
+- List User tweets :heavy_check_mark:
 - Favorite
 - Retweet
 
@@ -32,11 +33,12 @@
 ## Authentication
 
 - Using JWT
--
+- Invalidate tokens after logout
+- Check for expired tokens
 
 ## Authorization
 
-- checking for roles
+- Checking for roles
 
 ## General Notes
 
@@ -48,8 +50,6 @@
 
 ## TODO:
 
-- Invalidate tokens after logout
-- check for expired tokens
 - sanitize tweets
 - add loggers
 - mongoose uri env var

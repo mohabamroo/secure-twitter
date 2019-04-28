@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import beautifyUnique from "mongoose-beautiful-unique-validation";
 import bcrypt from "bcryptjs";
+import mongoosePaginate from "mongoose-paginate";
 
 var UserSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
@@ -53,6 +54,7 @@ UserSchema.methods.toJSON = function() {
   return obj;
 };
 
+UserSchema.plugin(mongoosePaginate);
 UserSchema.plugin(beautifyUnique);
 
 export default mongoose.model("User", UserSchema);

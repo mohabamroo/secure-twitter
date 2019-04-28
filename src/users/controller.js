@@ -39,7 +39,7 @@ const createFollowRequest = (req, res, next) => {
     });
 };
 
-const removeFollowRequest = (req, res, next) => {
+const unfollowUser = (req, res, next) => {
   const followObj = {
     followerId: req.currentUser._id,
     followedId: req.params.user_id
@@ -47,6 +47,56 @@ const removeFollowRequest = (req, res, next) => {
   FollowRequest.findOneAndRemove(followObj)
     .then(followRes => {
       req.followRes = followRes;
+      next();
+    })
+    .catch(err => {
+      next(err);
+    });
+};
+
+const acceptFollowRequest = (req, res, next) => {
+  FollowRequest.findByIdAndUpdate(
+    {
+      followedId: req.currentUser._id,
+      _id: req.params.follow_request_id
+    },
+    { approved: true },
+    { new: true }
+  )
+    .then(followRes => {
+      req.followRes = followRes;
+      next();
+    })
+    .catch(err => {
+      next(err);
+    });
+};
+
+const removeFollowRequest = (req, res, next) => {
+  FollowRequest.findByIdAndDelete({
+    followedId: req.currentUser._id,
+    _id: req.params.follow_request_id
+  })
+    .then(followRes => {
+      req.followRes = followRes;
+      next();
+    })
+    .catch(err => {
+      next(err);
+    });
+};
+
+const listUsers = (req, res, next) => {
+  const page = req.query.page || 1;
+  const limit = req.query.pageSize || 10;
+  var options = {
+    limit: limit,
+    page: page,
+    select: ["-refreshToken", "-role"]
+  };
+  User.paginate({}, options)
+    .then(users => {
+      req.users = users;
       next();
     })
     .catch(err => {
@@ -66,6 +116,23 @@ export default {
     authUtil.ensureAuthenticated,
     aclUtil.checkRole(["user"]),
     validate(validation.emptyBody),
+    unfollowUser
+  ],
+  acceptFollowRequestPipeline: [
+    authUtil.ensureAuthenticated,
+    aclUtil.checkRole(["user"]),
+    validate(validation.emptyBody),
+    acceptFollowRequest
+  ],
+  removeFollowRequestPipeline: [
+    authUtil.ensureAuthenticated,
+    aclUtil.checkRole(["user"]),
+    validate(validation.emptyBody),
     removeFollowRequest
+  ],
+  listUsersPipeline: [
+    authUtil.ensureAuthenticated,
+    aclUtil.checkRole(["user"]),
+    listUsers
   ]
 };

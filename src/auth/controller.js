@@ -5,6 +5,8 @@ import validate from "../../config/express-validation";
 import validation from "./validation";
 import http4xx from "http-errors";
 import uuidv4 from "uuid/v4";
+import { authUtil } from "../utilities";
+import Blacklist from "../../database/models/blacklist_tokens";
 
 const userSignup = (req, res, next) => {
   const user = new User(req.body.user);
@@ -96,8 +98,19 @@ const updateUser = (req, res, next) => {
     });
 };
 
+const invalidateToken = (req, res, next) => {
+  Blacklist.create({ token: req.access_token, userID: req.currentUser._id })
+    .then(blacklist => {
+      next();
+    })
+    .catch(err => {
+      next(err);
+    });
+};
+
 export default {
   signUpUserPipeline: [validate(validation.userSignup), userSignup],
   signInPipeline: [validate(validation.signin), verifyCredentials, generateJWT],
-  refreshTokenPipeline: [validate(validation.refreshToken), refreshAuthToken]
+  refreshTokenPipeline: [validate(validation.refreshToken), refreshAuthToken],
+  logoutPipeline: [authUtil.ensureAuthenticated, invalidateToken]
 };

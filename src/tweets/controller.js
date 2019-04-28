@@ -2,7 +2,7 @@ import Tweet from "../../database/models/tweet";
 import validate from "../../config/express-validation";
 import validation from "./validation";
 import http4xx from "http-errors";
-import { aclUtil, authUtil } from "../utilities";
+import { aclUtil, authUtil, privacyUtil } from "../utilities";
 
 const createTweet = (req, res, next) => {
   const tweetObj = new Tweet(req.body.tweet);
@@ -42,6 +42,7 @@ const listUserTweets = (req, res, next) => {
     .then(tweets => {
       req.tweets = tweets;
       next();
+      return;
     })
     .catch(err => {
       next(err);
@@ -59,6 +60,7 @@ export default {
     authUtil.ensureAuthenticated,
     aclUtil.checkRole(["user"]),
     validate(validation.listTweetPage),
+    privacyUtil.checkPublicOrFollowed,
     listUserTweets
   ]
 };
