@@ -7,7 +7,7 @@ const checkPublicUser = userID => {
     User.findOne({ _id: userID, private: false })
       .then(user => {
         if (user) {
-          resolve();
+          resolve(true);
         } else {
           reject(http4xx(404, "User not found or not public account."));
         }
@@ -21,25 +21,37 @@ const checkPublicUser = userID => {
 // checks if a given user account is public or followed by the current user
 export const checkPublicOrFollowed = (req, res, next) => {
   const userID = req.params.user_id;
-  checkPublicUser(userID)
+  return new Promise(function(resolve, reject) {
+    checkPublicUser(userID)
+      .then(() => {
+        resolve(true);
+      })
+      .catch(err => {
+        FollowRequest.findOne({
+          followerId: req.currentUser._id,
+          followedId: userID,
+          approved: true
+        })
+          .then(followObj => {
+            if (followObj) {
+              resolve(true);
+            } else {
+              reject(err);
+            }
+          })
+          .catch(err2 => {
+            reject(err2);
+          });
+      });
+  });
+};
+
+export const checkPublicOrFollowedPipe = (req, res, next) => {
+  checkPublicOrFollowed(req, res, next)
     .then(() => {
       next();
     })
     .catch(err => {
-      FollowRequest.findOne({
-        followerId: req.currentUser._id,
-        followedId: userID,
-        approved: true
-      })
-        .then(followObj => {
-          if (followObj) {
-            next();
-          } else {
-            next(err);
-          }
-        })
-        .catch(err2 => {
-          next(err2);
-        });
+      next(err);
     });
 };

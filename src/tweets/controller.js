@@ -60,7 +60,7 @@ export default {
     authUtil.ensureAuthenticated,
     aclUtil.checkRole(["user"]),
     validate(validation.listTweetPage),
-    privacyUtil.checkPublicOrFollowed,
+    privacyUtil.checkPublicOrFollowedPipe,
     listUserTweets
   ]
 };

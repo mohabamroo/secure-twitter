@@ -28,6 +28,12 @@
 - Favorite
 - Retweet
 
+### Messages
+
+- Send Messages (request) :heavy_check_mark:
+- List messages with user :heavy_check_mark:
+- List user chats (unique messages) :heavy_check_mark:
+
 ---
 
 ## Authentication
