@@ -4,8 +4,23 @@ import bcrypt from "bcryptjs";
 import mongoosePaginate from "mongoose-paginate";
 
 var UserSchema = new mongoose.Schema({
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true, select: false },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    isEmail: {
+      errorMessage: "Invalid Email"
+    }
+  },
+  password: {
+    type: String,
+    required: true,
+    select: false,
+    matches: {
+      options: ["(?=.*[a-zA-Z])(?=.*[0-9]+).*", "g"],
+      errorMessage: "Password must be alphanumeric."
+    }
+  },
   role: { type: String, required: true },
   refreshToken: { type: String, required: true },
   name: {

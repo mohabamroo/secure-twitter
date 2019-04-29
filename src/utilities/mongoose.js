@@ -1,8 +1,7 @@
 import mongoose from "mongoose";
 
 const mongooseConnect = cb => {
-  const mongo_uri =
-    "mongodb://team37:test1234@ds127190.mlab.com:27190/secure-twitter";
+  const mongo_uri = process.env.MONGOOSE_URI;
   mongoose.connect(mongo_uri, { useNewUrlParser: true });
 
   mongoose.connection.on("connected", () => {

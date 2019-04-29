@@ -1,7 +1,6 @@
 import Message from "../../database/models/message";
 import validate from "../../config/express-validation";
 import validation from "./validation";
-import http4xx from "http-errors";
 import { aclUtil, authUtil, privacyUtil } from "../utilities";
 import mongoose from "mongoose";
 const userSelectFields = {
@@ -16,6 +15,7 @@ const userSelectFields = {
 
 const createMessage = (req, res, next) => {
   const messageObj = new Message(req.body.message);
+  messageObj.text = req.sanitize(messageObj.text);
   messageObj.receiverId = req.params.user_id;
   messageObj.senderId = req.currentUser._id;
   messageObj.request = !req.user_privacy_allowed;

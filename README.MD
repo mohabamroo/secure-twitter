@@ -11,15 +11,16 @@
 
 ### Messages
 
-- Chat request
-- Send messages
+- List Chats :heavy_check_mark:
+- Send messages :heavy_check_mark:
+- List messages :heavy_check_mark:
 
 ### Auth
 
 - Login :heavy_check_mark:
 - Register :heavy_check_mark:
-- Logout (invalidate token)
-- Refresh token
+- Logout (invalidate token) :heavy_check_mark:
+- Refresh token :heavy_check_mark:
 
 ### Tweets
 
@@ -53,9 +54,6 @@
 - using regex in url params to add restrictions
 - Mongoose ORM has sanitizing guards
 - omitting user password when converted to JSON
-
-## TODO:
-
 - sanitize tweets
 - add loggers
 - mongoose uri env var

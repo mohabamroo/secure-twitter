@@ -1,5 +1,6 @@
 import expressValidation from "express-validation";
 import http4xx from "http-errors";
+import { logger } from "../../logger";
 
 export default (err, req, res, next) => {
   if (err.name === "ValidationError") {
@@ -16,7 +17,7 @@ export default (err, req, res, next) => {
 };
 
 const handleMongodbError = (err, res) => {
-  console.log("Mongodb Error: ", err);
+  logger.error("Mongodb Error: ", err);
   res.status(400).json({
     err: "Bad Request",
     message: err
@@ -24,7 +25,7 @@ const handleMongodbError = (err, res) => {
 };
 
 const handleExpressValidationError = (err, res) => {
-  console.log("Express Validation Error: ");
+  logger.error("Express Validation Error: ");
   res.status(400).json({
     err: "Bad Request",
     message: "Validation Error",
@@ -37,7 +38,7 @@ const handleHttpErrors = (err, res) => {
 };
 
 const unhandledError = (err, res) => {
-  console.log("Unhandled Error: ", err);
+  logger.error("Unhandled Error: ", err);
   res.status(500).json({
     err: "Internal Server Error",
     message: "Please refer to the api documentation"
@@ -46,7 +47,7 @@ const unhandledError = (err, res) => {
 
 const handleNotFoundError = (err, res) => {
   // TODO: HOWTO handle cast error?
-  console.log("Cast Error: ", err);
+  logger.error("Cast Error: ", err);
   res.status(404).json({
     err: "Not found Error",
     message: "Model not found, invalid ID."

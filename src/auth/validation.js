@@ -14,6 +14,7 @@ export default {
           .required(),
         name: Joi.string().required(),
         country: Joi.string(),
+        address: Joi.string(),
         phoneNumber: Joi.string()
           .regex(/^[0-9]*$/, "Phone Number")
           .allow(null),

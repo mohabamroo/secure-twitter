@@ -7,6 +7,7 @@ import { aclUtil, authUtil, privacyUtil } from "../utilities";
 const createTweet = (req, res, next) => {
   const tweetObj = new Tweet(req.body.tweet);
   tweetObj.userId = req.currentUser._id;
+  tweetObj.text = req.sanitize(tweetObj.text);
   Tweet.create(tweetObj)
     .then(function(tweet) {
       req.tweet = tweet;

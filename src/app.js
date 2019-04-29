@@ -6,6 +6,7 @@ import routesV1 from "../routes.v1";
 import mongooseConnect from "./utilities/mongoose";
 import errorHandler from "./utilities/errorHandler";
 import rateLimit from "express-rate-limit";
+import expressSanitizer from "express-sanitizer";
 
 require("dotenv").config();
 
@@ -16,6 +17,8 @@ const apiLimiter = rateLimit({
 
 const app = express();
 app.enable("trust proxy"); // only if you're behind a reverse proxy (Heroku, Bluemix, AWS ELB, Nginx, etc)
+app.use(express.json());
+app.use(expressSanitizer());
 
 app.use(bodyParser.json());
 app.use(
