@@ -57,3 +57,4 @@
 - sanitize tweets
 - add loggers
 - mongoose uri env var
+- using SSL
