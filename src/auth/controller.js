@@ -68,7 +68,7 @@ const generateJWT = (req, res, next) => {
 
 const refreshAuthToken = (req, res, next) => {
   const { refreshToken, email } = req.body;
-  Auth.findOne({ refreshToken, email })
+  User.findOne({ refreshToken, email })
     .then(user => {
       if (!user) {
         next(http4xx(401, "Invalid refresh token for this user."));

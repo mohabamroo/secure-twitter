@@ -11,7 +11,6 @@ router.post("/", controller.postTweetPipeline, (req, res) => {
 });
 
 router.get("/:user_id", controller.fetchUserTweetsPipeline, (req, res) => {
-  console.log("TCL: Router -> tweets", req.tweets);
   res.status(200).json({
     message: "Fetched tweets",
     ...req.tweets

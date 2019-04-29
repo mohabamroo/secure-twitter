@@ -64,6 +64,10 @@ const acceptFollowRequest = (req, res, next) => {
     { new: true }
   )
     .then(followRes => {
+      if (!followRes) {
+        next(http4xx(400, "Follow request not updated or found"));
+        return;
+      }
       req.followRes = followRes;
       next();
     })
