@@ -1,5 +1,16 @@
 # Secure Twitter
 
+## How To Run
+
+- npm i --verbose
+- npm start
+
+## Demo
+
+- install insomnia/postman
+- import **api_requests.json** file
+- simulate any request needed
+
 ## Features
 
 ### Users

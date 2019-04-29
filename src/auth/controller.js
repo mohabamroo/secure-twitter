@@ -15,7 +15,6 @@ const userSignup = (req, res, next) => {
   user.refreshToken = refreshToken;
   User.create(user)
     .then(user => {
-      console.log(user);
       req.user = user;
       next();
     })

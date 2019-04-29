@@ -42,6 +42,7 @@ const injectPrivacyFlag = (req, res, next) => {
     });
 };
 
+// TODO: sorting
 const listUserMessages = (req, res, next) => {
   const page = req.query.page || 1;
   const limit = req.query.pageSize || 10;
@@ -77,6 +78,7 @@ const listUserMessages = (req, res, next) => {
     });
 };
 
+// TODO: filter requests from normal chats
 const listUserChats = (req, res, next) => {
   const page = req.query.page || 1;
   const limit = req.query.pageSize || 10;

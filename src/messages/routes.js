@@ -3,12 +3,16 @@ import express from "express";
 
 const router = express.Router();
 
-router.post("/:user_id", controller.sendMessagePipeline, (req, res) => {
-  res.status(201).json({
-    message: "Sent message.",
-    messageObj: req.message
-  });
-});
+router.post(
+  "/:user_id([a-z0-9]+)",
+  controller.sendMessagePipeline,
+  (req, res) => {
+    res.status(201).json({
+      message: "Sent message.",
+      messageObj: req.message
+    });
+  }
+);
 
 router.get("/chats", controller.fetchUserChatsPipleline, (req, res) => {
   res.status(200).json({
@@ -18,7 +22,7 @@ router.get("/chats", controller.fetchUserChatsPipleline, (req, res) => {
 });
 
 router.get(
-  "/:user_id",
+  "/:user_id([a-z0-9]+)",
   controller.fetchMessagesWithUserPipeline,
   (req, res) => {
     res.status(200).json({

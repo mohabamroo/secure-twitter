@@ -10,11 +10,15 @@ router.post("/", controller.postTweetPipeline, (req, res) => {
   });
 });
 
-router.get("/:user_id", controller.fetchUserTweetsPipeline, (req, res) => {
-  res.status(200).json({
-    message: "Fetched tweets",
-    ...req.tweets
-  });
-});
+router.get(
+  "/:user_id([a-z0-9]+)",
+  controller.fetchUserTweetsPipeline,
+  (req, res) => {
+    res.status(200).json({
+      message: "Fetched tweets",
+      ...req.tweets
+    });
+  }
+);
 
 export default router;
