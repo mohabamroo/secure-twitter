@@ -11,12 +11,28 @@ router.post("/", controller.postTweetPipeline, (req, res) => {
 });
 
 router.get(
-  "/:user_id([a-z0-9]+)",
+  "/users/:user_id([a-z0-9]+)",
   controller.fetchUserTweetsPipeline,
   (req, res) => {
     res.status(200).json({
       message: "Fetched tweets",
       ...req.tweets
+    });
+  }
+);
+
+router.post("/like/:tweet_id", controller.likeTweetPipeline, (req, res) => {
+  res.status(200).json({
+    message: "Liked Tweet."
+  });
+});
+
+router.post(
+  "/retweet/:tweet_id",
+  controller.retweetTweetPipeline,
+  (req, res) => {
+    res.status(200).json({
+      message: "Retweeted Tweet."
     });
   }
 );

@@ -4,6 +4,7 @@
 
 - npm i --verbose
 - npm start
+- install insomnia and import _final_api_docs.json_
 
 ## Demo
 
