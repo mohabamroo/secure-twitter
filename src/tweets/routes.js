@@ -24,15 +24,29 @@ router.get(
 router.get("/trending", controller.fetchTrendingTweetsPipeline, (req, res) => {
   res.status(200).json({
     message: "Fetched trending tweets",
-    ...req.tweets
+    tweets: req.tweets
   });
 });
 
-router.post("/like/:tweet_id", controller.likeTweetPipeline, (req, res) => {
-  res.status(200).json({
-    message: "Liked Tweet."
-  });
-});
+router.post(
+  "/like/:tweet_id([a-z0-9]+)",
+  controller.likeTweetPipeline,
+  (req, res) => {
+    res.status(200).json({
+      message: "Liked Tweet."
+    });
+  }
+);
+
+router.delete(
+  "/:tweet_id([a-z0-9]+)",
+  controller.removeTweetPipeline,
+  (req, res) => {
+    res.status(200).json({
+      message: "Removed Tweet."
+    });
+  }
+);
 
 router.post(
   "/retweet/:tweet_id",

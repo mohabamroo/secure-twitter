@@ -172,6 +172,23 @@ const listFollowerUsers = (req, res, next) => {
     });
 };
 
+const updateProfile = (req, res, next) => {
+  const profileBody = req.body.user;
+  for (const x in profileBody) {
+    if (profileBody[x] == null) {
+      delete profileBody[x];
+    }
+  }
+  User.findOneAndUpdate({ _id: req.currentUser._id }, profileBody, { new: 1 })
+    .then(profile => {
+      req.profile = profile;
+      next();
+    })
+    .catch(err => {
+      next(err);
+    });
+};
+
 export default {
   followUserPipeline: [
     authUtil.ensureAuthenticated,
@@ -208,5 +225,11 @@ export default {
     aclUtil.checkRole(["user"]),
     listFollowingUsers,
     listFollowerUsers
+  ],
+  updateProfilePipeline: [
+    authUtil.ensureAuthenticated,
+    aclUtil.checkRole(["user"]),
+    validate(validation.editProfile),
+    updateProfile
   ]
 };

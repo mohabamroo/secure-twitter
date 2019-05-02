@@ -17,5 +17,16 @@ export default {
         .default(10),
       search: Joi.string().default("")
     }
+  },
+  editProfile: {
+    body: {
+      user: Joi.object({
+        private: Joi.boolean(),
+        name: Joi.string().allow(null),
+        country: Joi.string().allow(null),
+        phoneNumber: Joi.string().allow(null),
+        address: Joi.string().allow(null)
+      }).required()
+    }
   }
 };

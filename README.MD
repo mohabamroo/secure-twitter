@@ -20,6 +20,7 @@
 - Unfollow :heavy_check_mark:
 - List (pagination) :heavy_check_mark:
 - Accept/Remove Follow Requests :heavy_check_mark:
+- My following/follower :heavy_check_mark:
 
 ### Messages
 
@@ -38,8 +39,9 @@
 
 - Create :heavy_check_mark:
 - List User tweets :heavy_check_mark:
-- Favorite
-- Retweet
+- Favorite :heavy_check_mark:
+- Retweet :heavy_check_mark:
+- Trending :heavy_check_mark:
 
 ### Messages
 

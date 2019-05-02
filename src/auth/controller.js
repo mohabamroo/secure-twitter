@@ -25,7 +25,7 @@ const userSignup = (req, res, next) => {
 
 const verifyCredentials = (req, res, next) => {
   const { email, password } = req.body.user;
-  const roles = req.query.roles || ["user"];
+  const roles = req.query.roles || ["user", "admin"];
 
   User.findOne({ email })
     .select("+password")

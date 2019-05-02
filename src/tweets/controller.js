@@ -154,6 +154,16 @@ const getTrendingTweets = (req, res, next) => {
     });
 };
 
+const removeTweet = (req, res, next) => {
+  Tweet.findByIdAndDelete(req.params.tweetId)
+    .then(deleteRes => {
+      next();
+    })
+    .catch(err => {
+      next(err);
+    });
+};
+
 export default {
   postTweetPipeline: [
     authUtil.ensureAuthenticated,
@@ -187,5 +197,10 @@ export default {
     aclUtil.checkRole(["user"]),
     getTrendingTweetsIds,
     getTrendingTweets
+  ],
+  removeTweetPipeline: [
+    authUtil.ensureAuthenticated,
+    aclUtil.checkRole(["admin"]),
+    removeTweet
   ]
 };

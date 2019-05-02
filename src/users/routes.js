@@ -10,6 +10,13 @@ router.get("/", controller.listUsersPipeline, (req, res) => {
   });
 });
 
+router.patch("/profile", controller.updateProfilePipeline, (req, res) => {
+  res.status(200).json({
+    message: "Updated profile",
+    profile: req.profile
+  });
+});
+
 router.get("/following", controller.listFollowedUsersPipeline, (req, res) => {
   res.status(200).json({
     message: "Fetched users",
