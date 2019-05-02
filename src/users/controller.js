@@ -108,6 +108,70 @@ const listUsers = (req, res, next) => {
     });
 };
 
+const listFollowingUsers = (req, res, next) => {
+  const page = req.query.page || 1;
+  const limit = req.query.pageSize || 10;
+  var options = {
+    populate: [
+      {
+        path: "followedId",
+        select: {
+          name: 1,
+          email: 1,
+          gender: 1,
+          country: 1,
+          _id: 1,
+          birthDate: 1,
+          private: 1
+        }
+      }
+    ],
+    limit: limit,
+    page: page
+  };
+  FollowRequest.paginate({ followerId: req.currentUser._id }, options)
+    .then(followRes => {
+      console.log("TCL: listFollowingUsers -> followRes", followRes);
+      req.following = followRes.docs.map(x => x.followedId);
+      next();
+    })
+    .catch(err => {
+      next(err);
+    });
+};
+
+const listFollowerUsers = (req, res, next) => {
+  const page = req.query.page || 1;
+  const limit = req.query.pageSize || 10;
+  var options = {
+    populate: [
+      {
+        path: "followerId",
+        select: {
+          name: 1,
+          email: 1,
+          gender: 1,
+          country: 1,
+          _id: 1,
+          birthDate: 1,
+          private: 1
+        }
+      }
+    ],
+    limit: limit,
+    page: page
+  };
+  FollowRequest.paginate({ followedId: req.currentUser._id }, options)
+    .then(followRes => {
+      console.log("TCL: listFollowingUsers -> followRes", followRes);
+      req.followers = followRes.docs.map(x => x.followerId);
+      next();
+    })
+    .catch(err => {
+      next(err);
+    });
+};
+
 export default {
   followUserPipeline: [
     authUtil.ensureAuthenticated,
@@ -138,5 +202,11 @@ export default {
     authUtil.ensureAuthenticated,
     aclUtil.checkRole(["user"]),
     listUsers
+  ],
+  listFollowedUsersPipeline: [
+    authUtil.ensureAuthenticated,
+    aclUtil.checkRole(["user"]),
+    listFollowingUsers,
+    listFollowerUsers
   ]
 };

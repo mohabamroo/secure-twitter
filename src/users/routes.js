@@ -10,6 +10,14 @@ router.get("/", controller.listUsersPipeline, (req, res) => {
   });
 });
 
+router.get("/following", controller.listFollowedUsersPipeline, (req, res) => {
+  res.status(200).json({
+    message: "Fetched users",
+    following: req.following,
+    followers: req.followers
+  });
+});
+
 router.post(
   "/follow/:user_id([a-z0-9]+)",
   controller.followUserPipeline,

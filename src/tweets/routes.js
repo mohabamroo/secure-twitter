@@ -21,6 +21,13 @@ router.get(
   }
 );
 
+router.get("/trending", controller.fetchTrendingTweetsPipeline, (req, res) => {
+  res.status(200).json({
+    message: "Fetched trending tweets",
+    ...req.tweets
+  });
+});
+
 router.post("/like/:tweet_id", controller.likeTweetPipeline, (req, res) => {
   res.status(200).json({
     message: "Liked Tweet."

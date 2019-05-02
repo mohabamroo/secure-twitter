@@ -2,7 +2,7 @@ import http4xx from "http-errors";
 import User from "../../database/models/user";
 import FollowRequest from "../../database/models/follow_request";
 
-const checkPublicUser = userID => {
+export const checkPublicUser = userID => {
   return new Promise(function(resolve, reject) {
     User.findOne({ _id: userID, private: false })
       .then(user => {
@@ -10,6 +10,22 @@ const checkPublicUser = userID => {
           resolve(true);
         } else {
           reject(http4xx(404, "User not found or not public account."));
+        }
+      })
+      .catch(err => {
+        reject(err);
+      });
+  });
+};
+
+export const checkPublicUserPromise = userID => {
+  return new Promise(function(resolve, reject) {
+    User.findOne({ _id: userID, private: false })
+      .then(user => {
+        if (user) {
+          resolve(true);
+        } else {
+          resolve(false);
         }
       })
       .catch(err => {

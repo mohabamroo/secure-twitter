@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import beautifyUnique from "mongoose-beautiful-unique-validation";
+import mongoosePaginate from "mongoose-paginate";
 
 var followSchema = new mongoose.Schema({
   followerId: {
@@ -20,5 +21,6 @@ var followSchema = new mongoose.Schema({
 });
 
 followSchema.plugin(beautifyUnique);
+followSchema.plugin(mongoosePaginate);
 
 export default mongoose.model("FollowRequest", followSchema);

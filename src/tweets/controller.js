@@ -86,6 +86,74 @@ const reactTweet = action => {
   };
 };
 
+const getTrendingTweetsIds = (req, res, next) => {
+  var aggregatorOpts = [
+    {
+      $group: {
+        _id: "$tweetId",
+        total: { $sum: 1 }
+      }
+    },
+    {
+      $sort: { count: -1 }
+    }
+  ];
+
+  TweetReaction.aggregate(aggregatorOpts)
+    .exec()
+    .then(res => {
+      req.tweetsIds = res.map(x => x._id);
+      next();
+    })
+    .catch(err => {
+      next(err);
+    });
+};
+
+const getTrendingTweets = (req, res, next) => {
+  const page = req.query.page || 1;
+  const limit = req.query.pageSize || 10;
+  var options = {
+    populate: [
+      {
+        path: "userId",
+        select: {
+          name: 1,
+          email: 1,
+          gender: 1,
+          country: 1,
+          _id: 1,
+          birthDate: 1,
+          private: 1
+        }
+      }
+    ],
+    limit: limit,
+    page: page
+  };
+  Tweet.paginate({ _id: { $in: req.tweetsIds } }, options)
+    .then(tweets => {
+      req.tweets = tweets;
+      const privacyPromises = req.tweets.docs.map(x => {
+        return privacyUtil.checkPublicUserPromise(x.userId._id);
+      });
+      Promise.all(privacyPromises)
+        .then(privacyRes => {
+          // filtering out non public accounts' tweets
+          req.tweets = req.tweets.docs.filter((x, idx) => {
+            return privacyRes[idx];
+          });
+          next();
+        })
+        .catch(err => {
+          next(err);
+        });
+    })
+    .catch(err => {
+      next(err);
+    });
+};
+
 export default {
   postTweetPipeline: [
     authUtil.ensureAuthenticated,
@@ -112,6 +180,12 @@ export default {
     aclUtil.checkRole(["user"]),
     getTweet,
     privacyUtil.checkPublicOrFollowedPipe,
-    reactTweet("like")
+    reactTweet("retweet")
+  ],
+  fetchTrendingTweetsPipeline: [
+    authUtil.ensureAuthenticated,
+    aclUtil.checkRole(["user"]),
+    getTrendingTweetsIds,
+    getTrendingTweets
   ]
 };

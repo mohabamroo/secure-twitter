@@ -8,7 +8,7 @@ var tweetReactionSchema = new mongoose.Schema({
     enum: ["retweet", "like"]
   },
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
-  tweetId: [{ type: mongoose.Schema.Types.ObjectId, ref: "Tweet" }]
+  tweetId: { type: mongoose.Schema.Types.ObjectId, ref: "Tweet" }
 });
 
 tweetReactionSchema.plugin(mongoosePaginate);
